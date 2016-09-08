@@ -1,10 +1,10 @@
 # ICOM5016Project
 Artbay: Website for art marketing
 
-| University of Puerto Rico
-| Mayaguez Campus
-| Department of Computer Engineering
-| Fall 2016
+| University of Puerto Rico  
+| Mayaguez Campus  
+| Department of Computer Engineering  
+| Fall 2016  
 
 ##Project members:
 Carlos J. Donato Rivera\n
