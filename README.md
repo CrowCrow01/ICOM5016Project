@@ -1,18 +1,15 @@
 # ICOM5016Project
-Website for art marketing
+Artbay: Website for art marketing
 
-University of Puerto Rico
+University of Puerto Rico\n
+Mayaguez Campus\n
+Department of Computer Engineering\n
+Fall 2016\n
 
-Mayaguez Campus
+##Project members:
+Carlos J. Donato Rivera\n
+Stephen Velez\n
+Jose Marin\n
 
-Department of Computer Engineering
-
-Fall 2016
-
-Project members:
-Carlos J. Donato Rivera
-Stephen Velez
-Jose Marin
-
-Project evaluator:
+##Project evaluator:
 Professor Manuel Rodriguez
