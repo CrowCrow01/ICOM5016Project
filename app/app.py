@@ -76,7 +76,6 @@ def get_featured():
     featlist = []
     for row in featured:
         featlist.append({"title":row[0], "url":row[1]})
-        print(featlist)
     return jsonify({"featlist":featlist})
     # return app.send_static_file('homepageRequest.txt')
 
