@@ -1,6 +1,14 @@
 #!flask/bin/python
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for, redirect, make_response, jsonify
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.sql import text
+import models
+
 app = Flask(__name__)
+# conn = psycopg2.connect("dbname=artbay user=postgres")
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:fuckwin8@localhost/artbay'
+db = SQLAlchemy(app)
+connection = db.session.connection()
 
 @app.route('/')
 def login():
@@ -45,6 +53,33 @@ def listing_form():
 @app.route('/conf')
 def confirmation():
     return render_template('PaymentConfirmation.html')
+
+@app.route('/open_requests')
+def commissions_list():
+    return render_template('CommissionsList.html')
+
+@app.route('/commission')
+def commission():
+    return render_template('Commissions.html')
+
+@app.route('/cart')
+def cart():
+    return render_template('MyOrders.html')
+
+@app.route('/newCard')
+def add_credit_card():
+    return render_template('AddCreditCard.html')
+
+@app.route('/featuredList', methods=['GET'])
+def get_featured():
+    featured = db.engine.execute("SELECT iname, imageurl FROM item WHERE featured = 't' ORDER BY RANDOM() LIMIT 9") 
+    featlist = []
+    for row in featured:
+        featlist.append({"title":row[0], "url":row[1]})
+        print(featlist)
+    return jsonify({"featlist":featlist})
+    # return app.send_static_file('homepageRequest.txt')
+
 
 @app.errorhandler(404)
 def not_found(error):

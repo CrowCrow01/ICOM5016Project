@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
@@ -81,47 +80,46 @@
 <div class="container-fluid text-center">
     <h3>Featured Arts!</h3><br>
     <div class="row content">
-        <div class="col-sm-3">
-            <p>Art Piece 1</p>
+        <div class="col-sm-3" id="column1">
+            <p id="featTitle1"></p>
             <a href="http://localhost:5000/item">
-                <img src="http://www.thisiscolossal.com/wp-content/uploads/2016/03/finger-4.jpg"
-                 class="img-responsive" style="width:100%" alt="Image"></a>
-            <br><p>Art Piece 2</p>
+                <img id="featImage1" src="" class="img-responsive" style="width:100%" alt="Image">
+            </a>
+            <br><p id="featTitle2"></p>
             <a href="http://localhost:5000/item">
-                <img src="http://webneel.com/daily/sites/default/files/images/daily/04-2014/1-bird-drawing.jpg"
-                 class="img-responsive" style="width:100%" alt="Image"></a>
-            <br><p>Art Piece 3</p>
+                <img id="featImage2" class="img-responsive" src="" style="width:100%" alt="Image"></a>
+            <br><p id="featTitle3"></p>
             <a href="http://localhost:5000/item">
-                <img src="http://www.liverpoolmuseums.org.uk/walker/collections/sculpture/sculpture-main.jpg"
-                 class="img-responsive" style="width:100%" alt="Image"></a>
+                <img id="featImage3" src="" class="img-responsive" style="width:100%" alt="Image">
+            </a>
         </div>
         <div class="col-sm-3">
-            <p>Art Piece 4</p>
+            <p id="featTitle4"></p>
             <a href="http://localhost:5000/item">
-                <img src="https://a2ua.com/mosaic/mosaic-006.jpg"
-                     class="img-responsive" style="width:100%" alt="Image"></a>
-            <br><p>Art Piece 5</p>
+                <img id="featImage4" src="" class="img-responsive" style="width:100%" alt="Image">
+            </a>
+            <br><p id="featTitle5"></p>
             <a href="http://localhost:5000/item">
-                <img src="http://www.verandahgallery.co.zw/wp-content/gallery/junk-art-africa-zimbabwean-artists/Chicken-Feed.jpg"
-                 class="img-responsive" style="width:100%" alt="Image"></a>
-            <br><p>Art Piece 6</p>
+                <img id="featImage5"
+                 class="img-responsive" src="" style="width:100%" alt="Image"></a>
+            <br><p id="featTitle6"></p>
             <a href="http://localhost:5000/item">
-                <img src="http://images.popmatters.com/misc_art/r/rock-poster-art-slater-650.jpg"
-                 class="img-responsive" style="width:100%" alt="Image"></a>
+                <img id="featImage6" src="" class="img-responsive" style="width:100%" alt="Image">
+            </a>
         </div>
         <div class="col-sm-3">
-            <p>Art Piece 7</p>
+            <p id="featTitle7"></p>
             <a href="http://localhost:5000/item">
-                <img src="http://1.bp.blogspot.com/-Z-YPhtPSKPA/VcuMJ4K3RtI/AAAAAAAAMnk/kILVWY6MJg4/s640/colored%2Bsand%2Bart2.jpg"
-                 class="img-responsive" style="width:100%" alt="Image"></a>
-            <br><p>Art Piece 8</p>
+                <img id="featImage7" src="" class="img-responsive" style="width:100%" alt="Image">
+            </a>
+            <br><p id="featTitle8"></p>
             <a href="http://localhost:5000/item">
-                <img src="https://watercolorpainting.com/watercolor-painting-tutorials/wp-content/uploads/2014/10/940x628_featured-img_acrylic-flower.jpg"
-                 class="img-responsive" style="width:100%" alt="Image"></a>
-            <br><p>Art Piece 9</p>
+                <img id="featImage8" src="" class="img-responsive" style="width:100%" alt="Image">
+            </a>
+            <br><p id="featTitle9"></p>
             <a href="http://localhost:5000/item">
-                <img src="http://creativedesignmagazine.com/wp-content/uploads/2011/11/examples-of-metal-work-art21.jpg"
-                 class="img-responsive" style="width:100%" alt="Image"></a>
+                <img id="featImage9" src="" class="img-responsive" style="width:100%" alt="Image">
+                </a>
         </div>
         <div class="col-sm-1">
             <br><br>
@@ -136,6 +134,8 @@
         </div>
     </div>
 </div>
+
+<script async="true" src="static/js/Artbay_HomePage.js"></script>
 
 <footer class="container-fluid text-center">
     <p>ICOM5007 Project Fall 2016 Carlos Stephen Jose copyright</p>

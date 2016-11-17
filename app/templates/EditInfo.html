@@ -9,7 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+	
 	<style>
         /* Remove the navbar's default margin-bottom and rounded borders */
         .navbar {
@@ -19,7 +19,7 @@
 
         /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
         .row.content {height: 800px}
-
+        
         /* Set black background color, white text and some padding */
         footer {
             background-color: #555;
@@ -32,12 +32,12 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="http://localhost:5000/index">ArtBay</a>
+            <a class="navbar-brand" href="http://localhost:5000/">ArtBay</a>
         </div>
         <ul class="nav navbar-nav">
-            <li class="active"><a href="http://localhost:5000/index">Home</a></li>
+            <li class="active"><a href="http://localhost:5000/">Home</a></li>
             <li class="active">
-                <form class="navbar-form" role="search" action="/search" method='get'>
+                <form class="navbar-form" role="search">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
                     <div class="input-group-btn">
@@ -57,7 +57,7 @@
             <li><a href="#"></a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="http://localhost:5000/user"><span class="glyphicon glyphicon-user"></span> Welcome User!</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Welcome User!</a></li>
             <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
         </ul>
     </div>
@@ -65,52 +65,23 @@
 
 	<div class="container">
 	<h2>Edit</h2>
-	<div class="container">
-		<p align = "left" style = "font-size:15px"> Edit Profile picture:</p>
-		<textarea rows = 1 cols = 50 style = "float:center:"></textarea>
-	</div>
-	<div class = "container">
-		<input type="button" value="Browse!" style="float: center;">
-	</div>
-	<div class = "container">
-		<input type="button" value="Submit!" style="float: center;">
-	</div>
-		<p align = "left" style = "font-size:15px"> Edit UserName:</p>
-		<textarea rows = 1 cols = 50 style = "float:center:"></textarea>
-	</div>
-	<div class = "container">
-		<input type="button" value="Submit!" style="float: center;">
-	</div>
-	<div class="container">
-		<p align = "left" style = "font-size:15px"> Edit Email:</p>
-		<textarea rows = 1 cols = 50 style = "float:center:"></textarea>
-	</div>
-	<div class = "container">
-		<input type="button" value="Submit!" style="float: center;">
-	</div>
-	<div class="container">
-		<p align = "left" style = "font-size:15px"> Edit Password:</p>
-		<textarea rows = 1 cols = 50 style = "float:center:"></textarea>
-	</div>
-	<div class = "container">
-		<input type="button" value="Submit!" style="float: center;">
-	</div>
-	<div class="container">
-		<p align = "left" style = "font-size:15px"> Edit Address:</p>
-		<textarea rows = 1 cols = 50 style = "float:center:"></textarea>
-	</div>
-	<div class = "container">
-		<input type="button" value="Submit!" style="float: center;">
-	</div>
-	<div class="container">
-		<p align = "left" style = "font-size:15px"> Edit payment options:</p>
-		<textarea rows = 1 cols = 50 style = "float:center:"></textarea>
-	</div>
-	<div class = "container">
-		<input type="button" value="Submit!" style="float: center;">
-	</div>
+	
+<form action="action_page.php">
+  Edit profile picture:<br>
+  <input type="text" name="firstname"><br>
+  Edit username:<br>
+  <input type="text" name="lastname"><br><br>
+   Edit email:<br>
+  <input type="text" name="firstname"><br>
+  Edit password:<br>
+  <input type="text" name="lastname"><br><br>
+   Edit address:<br>
+  <input type="text" name="firstname"><br>
+  <a href='http://localhost:5000/newCard'><input type="button" value="Edit Credit cards" style="float: center;"></a>
+  <input type="submit" value="Submit">
+</form>
 <footer class="container-fluid text-center">
-    <p>ICOM5007 Project Fall 2016 Carlos Stephen Jose copyright</p>
+    <p>Footer Text</p>
 </footer>
 </body>
 </html>
