@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,12 +33,12 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">ArtBay</a>
+            <a class="navbar-brand" href="http://localhost:5000/index">ArtBay</a>
         </div>
         <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
+            <li class="active"><a href="http://localhost:5000/index">Home</a></li>
             <li class="active">
-                <form class="navbar-form" role="search">
+                <form class="navbar-form" role="search" action="/search" method='get'>
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
                         <div class="input-group-btn">
@@ -54,40 +53,123 @@
                     </div>
                 </form>
             </li>
-            <li><a href="#">Sell a masterpiece!</a></li>
-            <li><a href="#">Auction House</a></li>
+            <li><a href="http://localhost:5000/create_listing">Sell a masterpiece!</a></li>
+            <li><a href="http://localhost:5000/search">Auction House</a></li>
             <li><a href="#"></a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Welcome User!</a></li>
+            <li><a href="http://localhost:5000/user"><span class="glyphicon glyphicon-user"></span> Welcome User!</a></li>
             <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
         </ul>
     </div>
 </nav>
 <div class="container">
     <h3>Item information</h3>
-		<div class="col-sm-6" style="background-color:lightgray;">
-			 <img src="http://www.thisiscolossal.com/wp-content/uploads/2016/03/finger-4.jpg"
-              alt="HTML5 Icon" style="width:500px;height:400px;"></a>
+        <div class="col-sm-6">
+             <img src="http://www.thisiscolossal.com/wp-content/uploads/2016/03/finger-4.jpg"
+              alt="HTML5 Icon" style="width:200px;height:200px;"></a>
 </div>
 
 <div class="w3-container">
-  <h3 align = "center">Thank you for shopping with us</h3>
-  <h1 align = "center">Order details:</h1>
- <p align="center"style = "font-size:20">Your order was; The dog in summer</p>
- <p align="center"style = "font-size:20">Your order number #1122334455</p>
- <p align="center"style = "font-size:20">Arriving: Thursday November 17, 2016 - Monday November 21, 2016</p>
- <p align="center"style = "font-size:20">Ship to Stephen Velez</p>
- <p align="center"style = "font-size:20">Mayaguez, PR</p>
-  <p align="center"style = "font-size:20">Payment method: Mater card</p>
-   <p align="center"style = "font-size:20">Card number: ****0000</p>
- <p align="center"style = "font-size:20">Total before shipping and handling: $200</p>
- <p align="center"style = "font-size:20">Shipping and handling: $20</p>
- <p align="center"style = "font-size:20">Order Total: $220</p>
-	
+  <h2 align = "right">Order details:</h2>
+ <p align="right"style = "font-size:20">Your order was; The dog in summer</p>
+ <p align="right"style = "font-size:20">Your order number #1122334455</p>
+ <p align="right"style = "font-size:20">Arriving: Thursday November 17, 2016 - Monday November 21, 2016</p>
+ <p align="right"style = "font-size:20">Ship to Stephen Velez</p>
+ <p align="right"style = "font-size:20">Mayaguez, PR</p>
+  <p align="right"style = "font-size:20">Payment method: Mater card</p>
+   <p align="right"style = "font-size:20">Card number: ****0000</p>
+ <p align="right"style = "font-size:20">Total before shipping and handling: $200</p>
+ <p align="right"style = "font-size:20">Shipping and handling: $20</p>
+ <p align="right"style = "font-size:20">Order Total: $220</p>
+    
 </div>
 
-			
+<div class="container">
+        <div class="col-sm-6">
+             <img src="http://www.liverpoolmuseums.org.uk/walker/collections/sculpture/sculpture-main.jpg"
+              alt="HTML5 Icon" style="width:200px;height:200px;" ></a>
+</div>
+
+<div class="w3-container">
+  <h2 align = "right">Order details:</h2>
+ <p align="right"style = "font-size:20">Your order was; Sculpture of Something</p>
+ <p align="right"style = "font-size:20">Your order number #54321</p>
+ <p align="right"style = "font-size:20">Arriving: Saturday December 17, 2016 - Thursday December 22, 2016</p>
+ <p align="right"style = "font-size:20">Ship to Stephen Velez</p>
+ <p align="right"style = "font-size:20">Mayaguez, PR</p>
+  <p align="right"style = "font-size:20">Payment method: Mater card</p>
+   <p align="right"style = "font-size:20">Card number: ****0000</p>
+ <p align="right"style = "font-size:20">Total before shipping and handling: $300</p>
+ <p align="right"style = "font-size:20">Shipping and handling: $50</p>
+ <p align="right"style = "font-size:20">Order Total: $350</p>
+    
+</div>
+
+<div class="container">
+        <div class="col-sm-6">
+             <img src="http://webneel.com/daily/sites/default/files/images/daily/04-2014/1-bird-drawing.jpg"
+              alt="HTML5 Icon" style="width:200px;height:200px;" ></a>
+</div>
+
+<div class="w3-container">
+  <h2 align = "right">Order details:</h2>
+ <p align="right"style = "font-size:20">Your order was; The morning bird</p>
+ <p align="right"style = "font-size:20">Your order number #98765</p>
+ <p align="right"style = "font-size:20">Arriving: Saturday December 31, 2016 - Friday January  6, 2016</p>
+ <p align="right"style = "font-size:20">Ship to Stephen Velez</p>
+ <p align="right"style = "font-size:20">Mayaguez, PR</p>
+  <p align="right"style = "font-size:20">Payment method: Mater card</p>
+   <p align="right"style = "font-size:20">Card number: ****0000</p>
+ <p align="right"style = "font-size:20">Total before shipping and handling: $100</p>
+ <p align="right"style = "font-size:20">Shipping and handling: $10</p>
+ <p align="right"style = "font-size:20">Order Total: $110</p>
+    
+</div>
+
+<div class="container">
+        <div class="col-sm-6">
+             <img src="http://creativedesignmagazine.com/wp-content/uploads/2011/11/examples-of-metal-work-art21.jpg"
+              alt="HTML5 Icon" style="width:200px;height:200px;" ></a>
+</div>
+
+<div class="w3-container">
+  <h2 align = "right">Order details:</h2>
+ <p align="right"style = "font-size:20">Your order was; Metal Dinosaur</p>
+ <p align="right"style = "font-size:20">Your order number #47902</p>
+ <p align="right"style = "font-size:20">Arriving: Monday January 2, 2016 - Friday January  6, 2016</p>
+ <p align="right"style = "font-size:20">Ship to Stephen Velez</p>
+ <p align="right"style = "font-size:20">Mayaguez, PR</p>
+  <p align="right"style = "font-size:20">Payment method: Mater card</p>
+   <p align="right"style = "font-size:20">Card number: ****0000</p>
+ <p align="right"style = "font-size:20">Total before shipping and handling: $100</p>
+ <p align="right"style = "font-size:20">Shipping and handling: $10</p>
+ <p align="right"style = "font-size:20">Order Total: $110</p>
+    
+</div>
+
+<div class="container">
+        <div class="col-sm-6">
+             <img src="http://1.bp.blogspot.com/-Z-YPhtPSKPA/VcuMJ4K3RtI/AAAAAAAAMnk/kILVWY6MJg4/s640/colored%2Bsand%2Bart2.jpg"
+              alt="HTML5 Icon" style="width:200px;height:200px;" ></a>
+</div>
+
+<div class="w3-container">
+  <h2 align = "right">Order details:</h2>
+ <p align="right"style = "font-size:20">Your order was; Cat in Sand</p>
+ <p align="right"style = "font-size:20">Your order number #74298</p>
+ <p align="right"style = "font-size:20">Arriving: Monday Tuesday 3, 2016 - Saturday January  7, 2016</p>
+ <p align="right"style = "font-size:20">Ship to Stephen Velez</p>
+ <p align="right"style = "font-size:20">Mayaguez, PR</p>
+  <p align="right"style = "font-size:20">Payment method: Mater card</p>
+   <p align="right"style = "font-size:20">Card number: ****0000</p>
+ <p align="right"style = "font-size:20">Total before shipping and handling: $150</p>
+ <p align="right"style = "font-size:20">Shipping and handling: $25</p>
+ <p align="right"style = "font-size:20">Order Total: $175</p>
+    
+</div>
+
+            
 <footer class="container-fluid text-center">
     <p>Icom 5016 Project; Owners: Carlos Donato, José Marín, Stephen Vélez</p>
 </footer>

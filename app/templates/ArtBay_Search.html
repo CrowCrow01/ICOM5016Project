@@ -40,7 +40,7 @@
             <li class="active">
                 <form class="navbar-form" role="search" action="/search" method='get'>
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+                        <input type="text" class="form-control" placeholder="Search" name="term" id="srch-term">
                         <div class="input-group-btn">
                             <select class="form-control" id="sel1">
                                 <option>Painting</option>
@@ -124,143 +124,143 @@
             <div class="list-group">
                 <p>  </p><br><p>  </p><br>
                 <div class="row">
-                      <div class="col-sm-3" style="background-color:black;">
+                    <div class="col-sm-3" style="background-color:black;">
                         <a href="http://localhost:5000/item">
-                            <img src="http://vignette4.wikia.nocookie.net/finalfantasy/images/f/f0/Dodo_Minion_FFXIV_Art.jpg/revision/latest?cb=20130901033547"
-                             alt="HTML5 Icon" style="width:250px;height:225px;"></a>
+                            <img id="image1"  src="" alt="HTML5 Icon" style="width:250px;height:225px;">
+                        </a>
                     </div>
                     <div class="col-sm-9">
-                        <h3>The Dodo</h3>
-                        <h5>Artist: ArtyNature</h5>
-                        <h5>Type: Graphical Art</h5>
-                        <h5>Creation Date: November 21, 2016</h5>
-                        <p>This is a dodo bird.</p>
+                        <h3 id="title1"></h3>
+                        <h5 id="artist1"></h5>
+                        <h5 id="type1"></h5>
+                        <h5 id="date1"></h5>
+                        <p id="descr1"></p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-3" style="background-color:black;">
                         <a href="http://localhost:5000/item">
-                            <img src="http://www.thisiscolossal.com/wp-content/uploads/2016/03/finger-4.jpg"
-                             alt="HTML5 Icon" style="width:250px;height:225px;"></a>
+                            <img id="image2" src="" alt="HTML5 Icon" style="width:250px;height:225px;">
+                        </a>
                     </div>
                     <div class="col-sm-9">
-                        <h3>The Dog in Summer</h3>
-                        <h5>Artist: DogLover</h5>
-                        <h5>Type: Painting</h5>
-                        <h5>Creation Date: May 11, 2003</h5>
-                        <p>The dog wasn't harmed in the making of this painting.</p>
+                        <h3 id="title2"></h3>
+                        <h5 id="artist2"></h5>
+                        <h5 id="type2"></h5>
+                        <h5 id="date2"></h5>
+                        <p id="descr2"></p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-3" style="background-color:black;">
                         <a href="http://localhost:5000/item">
-                            <img src="https://a2ua.com/mosaic/mosaic-006.jpg"
-                             alt="HTML5 Icon" style="width:250px;height:225px;"></a>
+                            <img id="image3" src="" alt="HTML5 Icon" style="width:250px;height:225px;">
+                        </a>
                     </div>
                     <div class="col-sm-9">
-                        <h3>Colorful Girl</h3>
-                        <h5>Artist: MosaicArtist</h5>
-                        <h5>Type: Mosaic</h5>
-                        <h5>Creation Date: December 10, 1985</h5>
-                        <p>The pretty girl posed for about 3 hours.</p>
+                        <h3 id="title3"></h3>
+                        <h5 id="artist3"></h5>
+                        <h5 id="type3"></h5>
+                        <h5 id="date3"></h5>
+                        <p id="descr3"></p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-3" style="background-color:black;">
                         <a href="http://localhost:5000/item">
-                            <img src="http://www.verandahgallery.co.zw/wp-content/gallery/junk-art-africa-zimbabwean-artists/Chicken-Feed.jpg"
-                             alt="HTML5 Icon" style="width:250px;height:225px;"></a>
+                            <img id="image4" src="" alt="HTML5 Icon" style="width:250px;height:225px;">
+                        </a>
                     </div>
                     <div class="col-sm-9">
-                        <h3>The Chicken</h3>
-                        <h5>Artist: RecycleBin</h5>
-                        <h5>Type: Trash Art</h5>
-                        <h5>Creation Date: January 1,2010</h5>
-                        <p>The chicken was made with things I found in my trash can.</p>
+                        <h3 id="title4"></h3>
+                        <h5 id="artist4"></h5>
+                        <h5 id="type4"></h5>
+                        <h5 id="date4"></h5>
+                        <p id="descr4"></p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-3" style="background-color:black;">
                         <a href="http://localhost:5000/item">
-                            <img src="http://images.popmatters.com/misc_art/r/rock-poster-art-slater-650.jpg"
-                             alt="HTML5 Icon" style="width:250px;height:225px;"></a>
+                            <img id="image5"  src="" alt="HTML5 Icon" style="width:250px;height:225px;">
+                        </a>
                     </div>
                     <div class="col-sm-9">
-                        <h3>Bison Poster</h3>
-                        <h5>Artist: Cowboy</h5>
-                        <h5>Type: Poster Art</h5>
-                        <h5>Creation Date: March 4, 2008</h5>
-                        <p>Cool bison I found in my backyard.</p>
+                        <h3 id="title5"></h3>
+                        <h5 id="artist5"></h5>
+                        <h5 id="type5"></h5>
+                        <h5 id="date5"></h5>
+                        <p id="descr5"></p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-3" style="background-color:black;">
                         <a href="http://localhost:5000/item">
-                            <img src="http://1.bp.blogspot.com/-Z-YPhtPSKPA/VcuMJ4K3RtI/AAAAAAAAMnk/kILVWY6MJg4/s640/colored%2Bsand%2Bart2.jpg"
-                             alt="HTML5 Icon" style="width:250px;height:225px;"></a>
+                            <img id="image6"  src="" alt="HTML5 Icon" style="width:250px;height:225px;">
+                        </a>
                     </div>
                     <div class="col-sm-9">
-                        <h3>Cat in Sand</h3>
-                        <h5>Artist: MyDaughter</h5>
-                        <h5>Type: Sand Art</h5>
-                        <h5>Creation Date: March 4, 2008</h5>
-                        <p>My daughter made this beautiful cat art.</p>
+                        <h3 id="title6"></h3>
+                        <h5 id="artist6"></h5>
+                        <h5 id="type6"></h5>
+                        <h5 id="date6"></h5>
+                        <p id="descr6"></p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-3" style="background-color:black;">
                         <a href="http://localhost:5000/item">
-                            <img src="https://watercolorpainting.com/watercolor-painting-tutorials/wp-content/uploads/2014/10/940x628_featured-img_acrylic-flower.jpg"
-                             alt="HTML5 Icon" style="width:250px;height:225px;"></a>
+                            <img id="image7"  src="" alt="HTML5 Icon" style="width:250px;height:225px;">
+                        </a>
                     </div>
                     <div class="col-sm-9">
-                        <h3>Red and Purple Flowers</h3>
-                        <h5>Artist: Florist</h5>
-                        <h5>Type: Acrylic Painting</h5>
-                        <h5>Creation Date: March 1, 1988</h5>
-                        <p>Pretty flowers.</p>
+                        <h3 id="title7"></h3>
+                        <h5 id="artist7"></h5>
+                        <h5 id="type7"></h5>
+                        <h5 id="date7"></h5>
+                        <p id="descr7"></p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-3" style="background-color:black;">
                         <a href="http://localhost:5000/item">
-                            <img src="http://creativedesignmagazine.com/wp-content/uploads/2011/11/examples-of-metal-work-art21.jpg"
-                             alt="HTML5 Icon" style="width:250px;height:225px;"></a>
+                            <img id="image8"  src="" alt="HTML5 Icon" style="width:250px;height:225px;">
+                        </a>
                     </div>
                     <div class="col-sm-9">
-                        <h3>Metal Dinosaur</h3>
-                        <h5>Artist: Blacksmith</h5>
-                        <h5>Type: Metalwork</h5>
-                        <h5>Creation Date: April 21, 2018</h5>
-                        <p>Dinosaurs are awesome.</p>
+                        <h3 id="title8"></h3>
+                        <h5 id="artist8"></h5>
+                        <h5 id="type8"></h5>
+                        <h5 id="date8"></h5>
+                        <p id="descr8"></p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-3" style="background-color:black;">
                         <a href="http://localhost:5000/item">
-                            <img src="http://webneel.com/daily/sites/default/files/images/daily/04-2014/1-bird-drawing.jpg"
-                             alt="HTML5 Icon" style="width:250px;height:225px;"></a>
+                            <img id="image9"  src="" alt="HTML5 Icon" style="width:250px;height:225px;">
+                        </a>
                     </div>
                     <div class="col-sm-9">
-                        <h3>The Morning Bird</h3>
-                        <h5>Artist: Someone</h5>
-                        <h5>Type: Drawing Art</h5>
-                        <h5>Creation Date: July 2, 2019</h5>
-                        <p>Bird is the word.</p>
+                        <h3 id="title9"></h3>
+                        <h5 id="artist9"></h5>
+                        <h5 id="type9"></h5>
+                        <h5 id="date9"></h5>
+                        <p id="descr9"></p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-3" style="background-color:black;">
                         <a href="http://localhost:5000/item">
-                            <img src="http://www.liverpoolmuseums.org.uk/walker/collections/sculpture/sculpture-main.jpg"
-                                 alt="HTML5 Icon" style="width:250px;height:225px;"></a>
+                            <img id="image10"  src="" alt="HTML5 Icon" style="width:250px;height:225px;">
+                        </a>
                     </div>
                     <div class="col-sm-9">
-                        <h3>Sculpture of Something</h3>
-                        <h5>Artist: ManyTalents</h5>
-                        <h5>Type: Sculpture</h5>
-                        <h5>Creation Date: March 4, 2008</h5>
-                        <p>Not sure what is this.</p>
+                        <h3 id="title10"></h3>
+                        <h5 id="artist10"></h5>
+                        <h5 id="type10"></h5>
+                        <h5 id="date10"></h5>
+                        <p id="descr10"></p>
                     </div>
                 </div>
                 <div class="row">
@@ -276,6 +276,9 @@
         </div>
     </div>
 </div>
+
+<script src="static/js/ArtBay_Search.js"></script>
+
 <footer class="container-fluid text-center">
     <p>ICOM5007 Project Fall 2016 Carlos Stephen Jose copyright</p>
 </footer>

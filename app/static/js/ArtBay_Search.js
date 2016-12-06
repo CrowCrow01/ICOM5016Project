@@ -2,10 +2,11 @@
  * Created by Crow on 11/17/2016.
  */
 var xmlhttp = new XMLHttpRequest();
-var url = "searchresultRequest.txt";
+var url =  "http://localhost:5000/searchResults" //"searchresultRequest.txt";
 xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         var data = JSON.parse(this.responseText);
+        // alert(data.images[0].url);
         loadPage(data);
     }
 };
@@ -15,7 +16,7 @@ xmlhttp.send();
 function loadPage(data) {
     var i, temp;
 
-    for(i=0;i<10;i++)
+    for(i=0;i<11;i++)
     {
         temp = "image" + ('' + (i+1));
         document.getElementById(temp).src = data.images[i].url;
@@ -27,13 +28,13 @@ function loadPage(data) {
         document.getElementById(temp).innerHTML = "Artist: " + data.images[i].artist;
 
         temp = "type" + ('' + (i+1));
-        document.getElementById(temp).innerHTML = "Type" + data.images[i].type;
+        document.getElementById(temp).innerHTML = "Type: " + data.images[i].type;
 
         temp = "date" + ('' + (i+1));
         document.getElementById(temp).innerHTML = "Creation Date: " + data.images[i].date;
 
         temp = "descr" + ('' + (i+1));
-        document.getElementById(temp).innerHTML = data.images[i].descr;
+        document.getElementById(temp).innerHTML = "Description: " + data.images[i].descr;
 
 
     }

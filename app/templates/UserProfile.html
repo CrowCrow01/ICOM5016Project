@@ -5,18 +5,18 @@
     <title>User Profile</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link rel="stylesheet" href="StarRating.css">
+    <link rel="stylesheet" href="StarRating.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
-	<style>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    
+    <style>
         /* Remove the navbar's default margin-bottom and rounded borders */
         .navbar {
             margin-bottom: 0;
@@ -25,51 +25,52 @@
 
         /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
         .row.content {height: 800px}
-
+        
         /* Set black background color, white text and some padding */
         footer {
             background-color: #555;
             color: white;
             padding: 15px;
         }
+        
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1; 
+            padding-top: 100px; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgb(0,0,0); 
+            background-color: rgba(0,0,0,0.4);
+        }
 
-		.modal {
-			display: none;
-			position: fixed;
-			z-index: 1;
-			padding-top: 100px;
-			left: 0;
-			top: 0;
-			width: 100%;
-			height: 100%;
-			overflow: auto;
-			background-color: rgb(0,0,0);
-			background-color: rgba(0,0,0,0.4);
-		}
 
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
 
-		.modal-content {
-			background-color: #fefefe;
-			margin: auto;
-			padding: 20px;
-			border: 1px solid #888;
-			width: 80%;
-		}
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
 
-		.close {
-			color: #aaaaaa;
-			float: right;
-			font-size: 28px;
-			font-weight: bold;
-		}
-
-		.close:hover,
-		.close:focus {
-			color: #000;
-			text-decoration: none;
-			cursor: pointer;
-		}
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
+    
 
 </head>
 <body style="height:1500px">
@@ -108,102 +109,108 @@
 </nav>
 <div class="container">
     <h3>user information</h3>
-	<div class="col-sm-3" style="background-color:lightgray;">
-		 <img src="http://vignette4.wikia.nocookie.net/ironman/images/e/ee/Photo(696).jpg/revision/latest?cb=20130922104708"
+    <div class="col-sm-3" style="background-color:lightgray;">
+         <img src="http://vignette4.wikia.nocookie.net/ironman/images/e/ee/Photo(696).jpg/revision/latest?cb=20130922104708"
                              alt="HTML5 Icon" style="width:250px;height:250px;">
-	</div>
-		<p align = "right" style = "font-size:45px"> User Information:</p>
-		<p align = "right" style = "font-size:25px"> Name: Tony Stark</p>
-		<p align = "right" style = "font-size:25px"> Experience with: colored pencil drawings, acrylic and oil paintings</p>
-		<p align = "right" style = "font-size:25px"> Email: TStark@gmail.com</p>
-		<p align = "right" style = "font-size:25px"> Address: New York, United States</p>
-
+    </div>
+        <p align = "right" style = "font-size:45px"> User Information:</p>
+        <p align = "right" style = "font-size:25px"> Name: Tony Stark</p>
+        <p align = "right" style = "font-size:25px"> Experience with: colored pencil drawings, acrylic and oil paintings</p>
+        <p align = "right" style = "font-size:25px"> Email: TStark@gmail.com</p>
+        <p align = "right" style = "font-size:25px"> Address: New York, United States</p>
+        
 </div>
 
 <div class="rating" align = "center">
-	<div class="container">
-		<a href="#demo" class="btn btn-info" data-toggle="collapse">Read Reviews</a>
-		<div id="demo" class="collapse">
-		User: StephenVC:
-		This artist is so talented. Im in love with all his pieces of art
-		</div>
-	</div>
+    <div class="container">
+        <a href="#demo" class="btn btn-info" data-toggle="collapse">Read Reviews</a>
+        <div id="demo" class="collapse">
+        User: StephenVC:
+        This artist is so talented. Im in love with all his pieces of art
+        </div>
+    </div>
 </div>
 
  <div class="col-sm-10">
-	<div class = "container">
-		<input type="button" value="Edit Info" style="float: right;">
-	</div>
+    <div class = "container">
+        <input type="button" value="Edit Info" style="float: right;" onclick="location.href='http://localhost:5000/user_edit';">
+    </div>
+    <div class = "container">
+        <input type="button" value="View Orders" style="float: right;" onclick="location.href='http://localhost:5000/cart';">
+    </div>
+    <div class = "container">
+        <input type="button" value="View Cart" style="float: right;" onclick="location.href='http://localhost:5000/cart';">
+    </div>
             <div class="list-group">
                 <p>  </p><br><p>  </p><br>
                 <h1 align = "left">Pieces of art for sale:</h1>
                 <div class="row">
                     <div class="col-sm-3" style="background-color:black;">
-                        <a href="http://localhost:5000/item">
+                        <a href="#">
                             <img src="http://www.thisiscolossal.com/wp-content/uploads/2016/03/finger-4.jpg"
                              alt="HTML5 Icon" style="width:250px;height:225px;"></a>
                     </div>
                     <div class="col-sm-9">
                         <h3>The Dog in Summer</h3>
                     </div>
+                    
+                    <button id="myBtn" align = "center">Delete Item</button>
+                    <!-- The Modal -->
+                    <div id="myModal" class="modal">
 
-					<button id="myBtn" align = "center">Delete Item</button>
-					<!-- The Modal -->
-					<div id="myModal" class="modal">
+                        <div class="modal-content">
+                        <span class="close">×</span>
+                        <p>The item you had for sale has been deleted.</p>
+                        </div>
+                        <button id="myBtn" style = "float:right">Return home</button>
 
-						<div class="modal-content">
-						<span class="close">×</span>
-						<p>The item you had for sale has been deleted.</p>
-						</div>
-						<button id="myBtn" style = "float:right">Return home</button>
-
-					</div>
+                    </div>
                 </div>
-
+                
                 <div class="row">
                     <div class="col-sm-3" style="background-color:black;">
-                        <a href="http://localhost:5000/item">
+                        <a href="#">
                             <img src="https://a2ua.com/mosaic/mosaic-006.jpg"
                              alt="HTML5 Icon" style="width:250px;height:225px;"></a>
                     </div>
                     <div class="col-sm-9">
                         <h3>Colorful Girl</h3>
                     </div>
+                    
+                    <button id="myBtn2" align = "center">Delete Item</button>
+                    <!-- The Modal -->
+                    <div id="myModal2" class="modal">
 
-					<button id="myBtn2" align = "center">Delete Item</button>
-					<!-- The Modal -->
-					<div id="myModal2" class="modal">
-
-						<div class="modal-content">
-						<span class="close">×</span>
-						<p>The item you had for sale has been deleted.</p>
-						</div>
-						<button id="myBtn" style = "float:right">Return home</button>
-					</div>
+                        <div class="modal-content">
+                        <span class="close">×</span>
+                        <p>The item you had for sale has been deleted.</p>
+                        </div>
+                        <button id="myBtn" style = "float:right">Return home</button>
+                    </div>
                 </div>
-
+               
                 <div class="row">
                     <div class="col-sm-3" style="background-color:black;">
-                        <a href="http://localhost:5000/item">
+                        <a href="#">
                             <img src="http://creativedesignmagazine.com/wp-content/uploads/2011/11/examples-of-metal-work-art21.jpg"
                              alt="HTML5 Icon" style="width:250px;height:225px;"></a>
                     </div>
                     <div class="col-sm-9">
                         <h3>Metal Dinosaur</h3>
                     </div>
+                    
+                    <button id="myBtn3" align = "center">Delete Item</button>
+                    <!-- The Modal -->
+                    <div id="myModal3" class="modal">
 
-					<button id="myBtn3" align = "center">Delete Item</button>
-					<!-- The Modal -->
-					<div id="myModal3" class="modal">
-
-						<div class="modal-content">
-						<span class="close">×</span>
-						<p>The item you had for sale has been deleted.</p>
-						</div>
-						<button id="myBtn" style = "float:right">Return home</button>
-					</div>
+                        <div class="modal-content">
+                        <span class="close">×</span>
+                        <p>The item you had for sale has been deleted.</p>
+                        </div>
+                        <button id="myBtn" style = "float:right">Return home</button>
+                    </div>
                 </div>
-		</div>
+        </div>
 </div>
 
 <script>
@@ -285,7 +292,7 @@ window.onclick = function(event) {
     }
 }
 </script>
-
+    
 
 </body>
 </html>

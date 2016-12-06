@@ -19,6 +19,10 @@ def index():
     #splash page
     return render_template('ArtBay_HomePage.html')
 
+@app.route('/register')
+def register():
+    return render_template('NewUser.html')
+
 #generic user
 @app.route('/user')
 def get_generic_user():
@@ -26,9 +30,12 @@ def get_generic_user():
 #specific user page
 @app.route('/user/<string:uid>', methods = ['GET'])
 def get_user(uid):
-    #when user tables are implemented the user page will be a template to be
-    #filled with the information from the table
-    return render_template('genericUserPage.html')
+    users = db.engine.execute("SELECT uid, ufirst, ulast, unickname, uemail FROM artuser WHERE uid = %s ", (uid))
+    user = []
+    for row in users:
+        user.append({"name":row[1]+' '+row[2], "nick":row[3], "email":row[4]})
+    return jsonify({"userinfo":user})
+
 @app.route('/user_edit')
 def user_edit():
     return render_template('EditInfo.html')
@@ -42,9 +49,38 @@ def get_listings():
     #get latest entries from listings table
     return render_template('ArtBay_Search.html')
 
-@app.route('/item')
-def get_item():
-    return render_template('ItemProfile.html')
+# @app.route('/search/<string:term>', methods=['GET'])
+# def searchresult(term):
+        # likeness = '%' + term + "%"
+#     searchlist = db.engine.execute("SELECT I.imageurl, U.unickname, I.itype, I.idescription, I.iname FROM artuser AS U, item AS I WHERE U.uid = I.uid")#, (term))
+#     images = []
+#     for row in results:
+#         images.append({"url":row[0], "artist":row[1], "type":row[2], "descr":row[3], "title":row[4]})
+#     print (images)
+#     return jsonify({"images":images})
+
+@app.route('/searchResults', methods=['GET'])
+def get_results():
+                                                                                                                                                #TODO BREAKING
+    results = db.engine.execute("SELECT I.imageurl, U.unickname, I.itype, I.idescription, I.iname FROM artuser AS U, item AS I WHERE U.uid = I.uid and iname like '%odo%'")
+    images = []
+    for row in results:
+        images.append({"url":row[0], "artist":row[1], "type":row[2], "descr":row[3], "title":row[4]})
+    # print (len(images))
+    return jsonify({"images":images})
+
+@app.route('/item/<string:iid>')
+def get_generic_item(iid):
+    return render_template('ItemProfile.html', itemID = iid)
+
+@app.route('/getitem/<string:iid>', methods = ['GET'])
+def get_item(iid):
+    itemlist = db.engine.execute("SELECT I.iname, I.price, U.unickname, I.itype, I.imageurl, I.uid, I.idescription FROM item AS I, artuser AS U WHERE iid = %s AND I.uid = U.uid", (iid))
+    item = []
+    for row in itemlist:
+        item.append({"title":row[0], "artist":row[2], "price":row[1], "type":row[3], "imageurl":row[4], "artistID":row[5], "d escription":row[6]})
+    return jsonify({"item":item[0]})
+
 @app.route('/create_listing')
 def listing_form():
     return render_template('ArtBay_NewItem.html')
@@ -53,6 +89,14 @@ def listing_form():
 @app.route('/conf')
 def confirmation():
     return render_template('PaymentConfirmation.html')
+
+@app.route('/orderinfo/<string:itemid>')
+def saleinfo(itemid):
+    orderlist = db.engine.execute("SELECT I.iname, I.price FROM item AS I WHERE iid = %s ", (itemid))
+    for row in orderlist:
+        order = {"title":row[0], "orderID":10324, "shipdate":"December 25, 2016", "buyer":"StephenVC", "address":"Mayaguez", "itemprice":row[1], "shipprice":25.00, "totalprice":row[1]+25.00}
+    print (order)
+    return jsonify(order)
 
 @app.route('/open_requests')
 def commissions_list():
@@ -72,13 +116,15 @@ def add_credit_card():
 
 @app.route('/featuredList', methods=['GET'])
 def get_featured():
-    featured = db.engine.execute("SELECT iname, imageurl FROM item WHERE featured = 't' ORDER BY RANDOM() LIMIT 9") 
+    featured = db.engine.execute("SELECT iname, imageurl, iid FROM item WHERE featured = 't' ORDER BY RANDOM() LIMIT 9") 
     featlist = []
     for row in featured:
-        featlist.append({"title":row[0], "url":row[1]})
+        featlist.append({"title":row[0], "url":row[1], "iid":row[2]})
     return jsonify({"featlist":featlist})
-    # return app.send_static_file('homepageRequest.txt')
 
+@app.route('/plsno')
+def facebook():
+    return make_response(jsonify("Please don't make me actually implement this."))
 
 @app.errorhandler(404)
 def not_found(error):

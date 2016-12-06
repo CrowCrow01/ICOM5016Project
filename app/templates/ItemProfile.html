@@ -5,17 +5,17 @@
     <title>Item Profile</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link rel="stylesheet" href="static/css/StarRating.css">
+    <link rel="stylesheet" href="static/css/StarRating.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-	<style>
+    <style>
         /* Remove the navbar's default margin-bottom and rounded borders */
         .navbar {
             margin-bottom: 0;
@@ -67,50 +67,49 @@
         </ul>
     </div>
 </nav>
-<div class="container">
+<div class="container" height="800px">
     <h3>Item information</h3>
-		<div class="col-sm-6" style="background-color:lightgray;">
-			 <img src="http://www.thisiscolossal.com/wp-content/uploads/2016/03/finger-4.jpg"
-              alt="HTML5 Icon" style="width:500px;height:400px;"></a>
-		</div>
-			<p align = "right" style = "font-size:30px"> The Dog in Summer, acrylic painting</p>
-			<p align = "right" style = "font-size:30px"> Meassures: 36"x18"</p>
-			<p align = "right" style = "font-size:30px"> Art by Tony Stark </p>
-			<p align = "right" style = "font-size:30px"> Price: US $200.00</p>
-			<p align = "right" style = "font-size:30px"> Quantity available: 2</p>
-		<form action="demo_form.asp" style = "float: right">
-			Select quantity: <input type="text" name="fname"><br>
-			<a href='http://localhost:5000/conf'><input type="button" value="Add to Cart!" style="float: right;"></a>
-			<input type="button" value="Bid!" style="float: right;">
-			<input type="button" value="Buy Now!" style="float: right;">
-		</form>
+        <div class="col-sm-6" style="background-color:lightgray;">
+             <img id="itemImage" src="" alt="HTML5 Icon" style="width:500px;height:400px;"></a>
+        </div>
+            <p id="itemTitle" align = "right" style = "font-size:30px"></p>
+            <p id="itemDimensions" align = "right" style = "font-size:30px"></p>
+            <p id="itemArtist" align = "right" style = "font-size:30px"></p>
+            <p id="itemPrice" align = "right" style = "font-size:30px"></p>
+            <p id="itemQty" align = "right" style = "font-size:30px"></p>
+        <form action="demo_form.asp" style = "float: right">
+            Select quantity: <input type="text" name="fname"><br>
+            <a href='http://localhost:5000/conf'><input type="button" value="Add to Cart!" style="float: right;"></a>
+            <input type="button" value="Bid!" style="float: right;">
+            <input type="button" value="Buy Now!" style="float: right;">
+        </form>
 </div>
 
 <div class="container">
-	<h1 align = "center">Reviews:</h1>
-		<div class="rating" align = "center">
-			<span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-		</div>
-		<div class="rating" align = "center">
-			<!--button type="button">Read Reviews</button-->
-			<div class="container">
-				<a href="#demo" class="btn btn-info" data-toggle="collapse">Read Reviews</a>
-				<div id="demo" class="collapse">
-				User: StephenVC:
-				This art piece is amazing. I really love it.
-				</div>
+    <h1 align = "center">Reviews:</h1>
+        <div class="rating" align = "center">
+            <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+        </div>
+        <div class="rating" align = "center">
+            <!--button type="button">Read Reviews</button-->
+            <div class="container">
+                <a href="#itemComments" class="btn btn-info" data-toggle="collapse">Read Reviews</a>
+                <div id="itemComments" class="collapse">
+                </div>
 </div>
-		</div>
+        </div>
 
 </div>
 
-	<div class="container">
-		<p align = "left" style = "font-size:15px"> Write a review</p>
-		<textarea rows = 5 cols = 50 style = "float:left:"></textarea>
-	</div>
-	<div class = "container">
-		<input type="button" value="Submit!" style="float: left;">
-	</div>
+    <div class="container">
+        <p align = "left" style = "font-size:15px"> Write a review</p>
+        <textarea rows = 5 cols = 50 style = "float:left"></textarea>
+    </div>
+    <div class = "container">
+        <input type="button" value="Submit!" style="float: left;">
+    </div>
+
+<script src="/static/js/ItemProfile.js"></script>
 <footer class="container-fluid text-center">
     <p>ICOM5007 Project Fall 2016 Carlos Stephen Jose copyright</p>
 </footer>

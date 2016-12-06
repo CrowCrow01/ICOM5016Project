@@ -15,12 +15,13 @@ function loadPage(data) {
     for(i=0;i<9;i++)
     {
         temp = "featTitle" + ('' + (i+1));
-        document.write(data.featlist[i]);
-        document.getElementById(temp).innerHTML = data[i].title;
+        document.getElementById(temp).innerHTML = data.featlist[i].title;
 
         temp = "featImage" + ('' + (i+1));
-        document.getElementById(temp).src =data[i].url;
+        document.getElementById(temp).src =data.featlist[i].url;
 
+        temp = "link" + ('' + (i+1));
+        document.getElementById(temp).href = "http://localhost:5000/item/" + data.featlist[i].iid;
     }
 }
 
