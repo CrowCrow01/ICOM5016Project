@@ -79,7 +79,7 @@
             <p id="itemQty" align = "right" style = "font-size:30px"></p>
         <form action="demo_form.asp" style = "float: right">
             Select quantity: <input type="text" name="fname"><br>
-            <a href='http://localhost:5000/conf'><input type="button" value="Add to Cart!" style="float: right;"></a>
+            <a href='http://localhost:5000/cart'><input type="button" value="Add to Cart!" style="float: right;"></a>
             <input type="button" value="Bid!" style="float: right;">
             <input type="button" value="Buy Now!" style="float: right;">
         </form>
@@ -87,27 +87,40 @@
 
 <div class="container">
     <h1 align = "center">Reviews:</h1>
-        <div class="rating" align = "center">
+        <!-- <div class="rating" align = "center">
             <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-        </div>
+        </div> -->
         <div class="rating" align = "center">
             <!--button type="button">Read Reviews</button-->
             <div class="container">
-                <a href="#itemComments" class="btn btn-info" data-toggle="collapse">Read Reviews</a>
-                <div id="itemComments" class="collapse">
+                <a href="#demo" class="btn btn-info" data-toggle="collapse">Read Reviews</a>
+                <div id="demo" class="collapse">
+                User: StephenVC:
+                This art piece is amazing. I really love it.
                 </div>
-</div>
+            </div>
         </div>
 
 </div>
+<form action = "http://localhost:5000/index" method = 'GET'>
+        <div class="form-group">
+                    <label for="ItemReview">Write review for item:</label>
+                    <input type="text" class="form-control" id="ItemReview">
+                    
+                    <label for="ItemRating">Rate it:</label>
+                    <input type="nymber" class="form-control" id="ItemRating">
+                    
+                    <label for="ArtistReview">Write review for artist:</label>
+                    <input type="text" class="form-control" id="ArtistReview">
+                    
+                    <label for="ArtistRating">Rate it:</label>
+                    <input type="nymber" class="form-control" id="ArtistRating">
+                </div>
 
-    <div class="container">
-        <p align = "left" style = "font-size:15px"> Write a review</p>
-        <textarea rows = 5 cols = 50 style = "float:left"></textarea>
-    </div>
-    <div class = "container">
-        <input type="button" value="Submit!" style="float: left;">
-    </div>
+                <div class="form-group center">
+                    <input type="submit" value="Submit">
+                </div>
+</form>
 
 <script src="/static/js/ItemProfile.js"></script>
 <footer class="container-fluid text-center">

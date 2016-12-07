@@ -24,16 +24,20 @@ def register():
     return render_template('NewUser.html')
 
 #generic user
-@app.route('/user')
-def get_generic_user():
-    return render_template('UserProfile.html')
+@app.route('/user/<string:uid>')
+def get_generic_user(uid):
+    return render_template('UserProfile.html', UserID = uid)
 #specific user page
-@app.route('/user/<string:uid>', methods = ['GET'])
+@app.route('/getuser/<string:uid>', methods = ['GET'])
 def get_user(uid):
-    users = db.engine.execute("SELECT uid, ufirst, ulast, unickname, uemail FROM artuser WHERE uid = %s ", (uid))
+    users = db.engine.execute("SELECT uid, ufirst, ulast, unickname, uemail, upicture FROM artuser WHERE uid = %s", (uid))
     user = []
     for row in users:
-        user.append({"name":row[1]+' '+row[2], "nick":row[3], "email":row[4]})
+        user.append({"uname":row[1], "lastname":row[2], "nick":row[3], "email":row[4], "upicture":row[5]})
+    items = db.engine.execute("SELECT iname, imageurl, iid FROM item WHERE uid = %s", (uid))
+    for row in items:
+        user.append({"iname":row[0], "imageurl":row[1], "iid":row[2]})
+    print (user)
     return jsonify({"userinfo":user})
 
 @app.route('/user_edit')
@@ -59,14 +63,18 @@ def get_listings():
 #     print (images)
 #     return jsonify({"images":images})
 
-@app.route('/searchResults', methods=['GET'])
-def get_results():
+@app.route('/searchResults/<string:word>', methods=['GET'])
+def get_results(word):
                                                                                                                                                 #TODO BREAKING
-    results = db.engine.execute("SELECT I.imageurl, U.unickname, I.itype, I.idescription, I.iname FROM artuser AS U, item AS I WHERE U.uid = I.uid and iname like '%odo%'")
+    term = "SELECT I.imageurl, U.unickname, I.itype, I.idescription, I.iname, I.iid FROM artuser AS U, item AS I WHERE U.uid = I.uid AND I.iname LIKE '%%" + word + "%%'"
+    # print ("%s", term)
+    results = db.engine.execute(term)
+    # for row in results:
+        # print (row)
     images = []
     for row in results:
-        images.append({"url":row[0], "artist":row[1], "type":row[2], "descr":row[3], "title":row[4]})
-    # print (len(images))
+        images.append({"url":row[0], "artist":row[1], "type":row[2], "descr":row[3], "title":row[4], "itemid":row[5]})
+    # print (images)
     return jsonify({"images":images})
 
 @app.route('/item/<string:iid>')
@@ -106,9 +114,13 @@ def commissions_list():
 def commission():
     return render_template('Commissions.html')
 
-@app.route('/cart')
-def cart():
+@app.route('/orders')
+def getOrders():
     return render_template('MyOrders.html')
+
+@app.route('/cart')
+def getCart():
+    return render_template('cart.html')
 
 @app.route('/newCard')
 def add_credit_card():

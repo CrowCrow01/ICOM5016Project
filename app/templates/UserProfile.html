@@ -110,13 +110,13 @@
 <div class="container">
     <h3>user information</h3>
     <div class="col-sm-3" style="background-color:lightgray;">
-         <img src="http://vignette4.wikia.nocookie.net/ironman/images/e/ee/Photo(696).jpg/revision/latest?cb=20130922104708"
+         <img id="userpic" src="http://vignette4.wikia.nocookie.net/ironman/images/e/ee/Photo(696).jpg/revision/latest?cb=20130922104708"
                              alt="HTML5 Icon" style="width:250px;height:250px;">
     </div>
         <p align = "right" style = "font-size:45px"> User Information:</p>
-        <p align = "right" style = "font-size:25px"> Name: Tony Stark</p>
+        <p id="name" align = "right" style = "font-size:25px"> Name: Tony Stark</p>
         <p align = "right" style = "font-size:25px"> Experience with: colored pencil drawings, acrylic and oil paintings</p>
-        <p align = "right" style = "font-size:25px"> Email: TStark@gmail.com</p>
+        <p id="email" align = "right" style = "font-size:25px"> Email: TStark@gmail.com</p>
         <p align = "right" style = "font-size:25px"> Address: New York, United States</p>
         
 </div>
@@ -136,7 +136,7 @@
         <input type="button" value="Edit Info" style="float: right;" onclick="location.href='http://localhost:5000/user_edit';">
     </div>
     <div class = "container">
-        <input type="button" value="View Orders" style="float: right;" onclick="location.href='http://localhost:5000/cart';">
+        <input type="button" value="View Orders" style="float: right;" onclick="location.href='http://localhost:5000/orders';">
     </div>
     <div class = "container">
         <input type="button" value="View Cart" style="float: right;" onclick="location.href='http://localhost:5000/cart';">
@@ -146,12 +146,12 @@
                 <h1 align = "left">Pieces of art for sale:</h1>
                 <div class="row">
                     <div class="col-sm-3" style="background-color:black;">
-                        <a href="#">
-                            <img src="http://www.thisiscolossal.com/wp-content/uploads/2016/03/finger-4.jpg"
+                        <a id="itemlink1" href="#">
+                            <img id="itempic1" src="http://www.thisiscolossal.com/wp-content/uploads/2016/03/finger-4.jpg"
                              alt="HTML5 Icon" style="width:250px;height:225px;"></a>
                     </div>
                     <div class="col-sm-9">
-                        <h3>The Dog in Summer</h3>
+                        <h3 id="itemname1"></h3>
                     </div>
                     
                     <button id="myBtn" align = "center">Delete Item</button>
@@ -169,12 +169,12 @@
                 
                 <div class="row">
                     <div class="col-sm-3" style="background-color:black;">
-                        <a href="#">
-                            <img src="https://a2ua.com/mosaic/mosaic-006.jpg"
+                        <a id="itemlink2" href="#">
+                            <img id="itempic2" src="https://a2ua.com/mosaic/mosaic-006.jpg"
                              alt="HTML5 Icon" style="width:250px;height:225px;"></a>
                     </div>
                     <div class="col-sm-9">
-                        <h3>Colorful Girl</h3>
+                        <h3 id="itemname2"></h3>
                     </div>
                     
                     <button id="myBtn2" align = "center">Delete Item</button>
@@ -191,12 +191,12 @@
                
                 <div class="row">
                     <div class="col-sm-3" style="background-color:black;">
-                        <a href="#">
-                            <img src="http://creativedesignmagazine.com/wp-content/uploads/2011/11/examples-of-metal-work-art21.jpg"
+                        <a id="itemlink3" href="#">
+                            <img id="itempic3" src="http://creativedesignmagazine.com/wp-content/uploads/2011/11/examples-of-metal-work-art21.jpg"
                              alt="HTML5 Icon" style="width:250px;height:225px;"></a>
                     </div>
                     <div class="col-sm-9">
-                        <h3>Metal Dinosaur</h3>
+                        <h3 id="itemname3"></h3>
                     </div>
                     
                     <button id="myBtn3" align = "center">Delete Item</button>
@@ -292,6 +292,7 @@ window.onclick = function(event) {
     }
 }
 </script>
+<script src="/static/js/UserProfile.js"></script>
     
 
 </body>
