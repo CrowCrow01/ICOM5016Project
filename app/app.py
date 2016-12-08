@@ -43,6 +43,29 @@ def get_user(uid):
 @app.route('/user_edit')
 def user_edit():
     return render_template('EditInfo.html')
+@app.route('/create_user', methods = ['POST'])
+def user_creation():
+    username = request.form['username']
+    duplicate_check = db.engine.execute("SELECT unickname FROM artuser WHERE unickname = %s", (username))
+    dupe = []
+    for row in duplicate_check:
+        dupe.append({"nick":row[0]})
+
+    if (len(dupe)==0):
+        fname = request.form['name']
+        lname = request.form['lastname']
+        email = request.form['email']
+        pword = request.form['pass']
+        # phone = request.form['pnumber']
+        state = request.form['state']
+        city = request.form['city']
+        zipc = request.form['zip']
+        street = request.form['street']
+        db.engine.execute("INSERT INTO artuser (ufirst, ulast, unickname, uemail, upasswrd, ustate, ucity, uzip, ustreet) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", (fname, lname, username, email, pword, state, city, zipc, street))
+        return make_response("done", 200)
+    else:
+        return make_response('username taken', 200)
+
 
 # @app.route('/user/<string:uid>/reviews')
 # def get_reviews(uid):
@@ -75,6 +98,11 @@ def get_results(word):
     for row in results:
         images.append({"url":row[0], "artist":row[1], "type":row[2], "descr":row[3], "title":row[4], "itemid":row[5]})
     # print (images)
+    return jsonify({"images":images})
+@app.route('/searchResults/', methods=['GET'])
+def empty_search():
+    images = []
+    images.append({"url":"http://i.imgur.com/ZuE8EYG.jpg"})
     return jsonify({"images":images})
 
 @app.route('/item/<string:iid>')

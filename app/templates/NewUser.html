@@ -66,59 +66,59 @@
 	<div class="container">
 	<h2>Edit</h2>
 	
-<form action = "http://localhost:5000/index" method = 'GET'>
+<form action = "http://localhost:5000/create_user" method = 'POST'>
 <div class="container-fluid">
         <div class="col-sm-8">
             <p>  </p><br><p>  </p><br>
 
-				<form action = "http://localhost:5000/index" method = 'GET'>
+				<form action = "http://localhost:5000/create_user" method = 'POST'>
 					<!-- <h4>Add users card info to sqlite db</h4> -->
 			
 				<p style="font-size:160%;" align = "center">Edit your personal information:</p>
 
 				<div class="form-group">
 					<label for="PImage">Upload Profile Picture:</label>
-					<input type="image" class="form-control" id="PImage">
+					<input type="text" id="PImage"> <!-- class="form-control" -->
 				</div>
 				<div class="form-group">
 					<label for="FName">Enter name:</label>
-					<input type="text" class="form-control" id="FName">
+					<input type="text" class="form-control" id="FName" name='fname'>
 				</div>
 				<div class="form-group">
 					<label for="LName">Enter lastname:</label>
-					<input type="text" class="form-control" id="LName">
+					<input type="text" class="form-control" id="LName" name='lname'>
 				</div>
 				<div class="form-group">
 					<label for="UserName">Enter usermane:</label>
-					<input type="text" class="form-control" id="UserName">
+					<input type="text" class="form-control" id="UserName" name='username'>
 				</div>
 				<div class="form-group">
 					<label for="Email">Enter E-mail:</label>
-					<input type="email" class="form-control" id="Email">
+					<input type="email" class="form-control" id="Email" name='email'>
 				</div>
 				<div class="form-group">
 					<label for="Password">Enter password:</label>
-					<input type="password" class="form-control" id="Password">
+					<input type="password" class="form-control" id="Password" name='pword'>
 				</div>
 				<div class="form-group">
 					<label for="Phone">Enter phone number:</label>
-					<input type="tel" class="form-control" id="Phone">
+					<input type="tel" class="form-control" id="Phone" name='phone'>
 				</div>
 				<div class="form-group">
 					<label for="state">Enter state:</label>
-					<input type="text" class="form-control" id="State">
+					<input type="text" class="form-control" id="State" name='state'>
 				</div>
 				<div class="form-group">
 					<label for="City">Enter city:</label>
-					<input type="text" class="form-control" id="City">
+					<input type="text" class="form-control" id="City" name='city'>
 				</div>
 				<div class="form-group">
 					<label for="Zip">Enter zipcode:</label>
-					<input type="text" class="form-control" id="Zip">
+					<input type="text" class="form-control" id="Zip" name='zipc'>
 				</div>
 				<div class="form-group">
 					<label for="Street">Enter street:</label>
-					<input type="text" class="form-control" id="Street">
+					<input type="text" class="form-control" id="Street" name='street'>
 				</div>
 				<div class="form-group center">
                     <input type="submit" value="Create Account!">
