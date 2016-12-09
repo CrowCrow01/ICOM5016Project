@@ -1,5 +1,5 @@
 #!flask/bin/python
-from flask import Flask, render_template, request, url_for, redirect, make_response, jsonify
+from flask import Flask, render_template, request, url_for, redirect, make_response, jsonify, session
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import text
 import models
@@ -10,13 +10,36 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:fuckwin8@localhos
 db = SQLAlchemy(app)
 connection = db.session.connection()
 
+# set the secret key.  keep this really secret:
+app.secret_key = 'password'
+
 @app.route('/')
 def login():
     return render_template('login.html')
 
+@app.route('/loginverify', methods = ['POST'])
+def verify():
+    user = request.form['username']
+    pword = request.form['password']
+    verification = db.engine.execute("SELECT passwrd, uid, unickname FROM artuser WHERE unickname = %s", (user))
+    array = []
+    for row in verification:
+        array.append({"passw":row[0]})
+        uid = row[1]
+        # print(array)
+    if (len(array)==0):
+        return make_response('username does not exist', 200)
+    elif (array[0] == {"passw":pword}):
+        session['userinfo'] = {"username":user, "uid":uid}
+        return redirect(url_for('index'))
+    else: 
+        return make_response('password invalid', 200)
+
+
 @app.route('/index')
 def index():
     #splash page
+    print (session['userinfo'])
     return render_template('ArtBay_HomePage.html')
 
 @app.route('/register')
@@ -26,7 +49,7 @@ def register():
 #generic user
 @app.route('/user/<string:uid>')
 def get_generic_user(uid):
-    return render_template('UserProfile.html', UserID = uid)
+    return render_template('UserProfile.html')#, UserID = uid)
 #specific user page
 @app.route('/getuser/<string:uid>', methods = ['GET'])
 def get_user(uid):
@@ -43,6 +66,7 @@ def get_user(uid):
 @app.route('/user_edit')
 def user_edit():
     return render_template('EditInfo.html')
+
 @app.route('/create_user', methods = ['POST'])
 def user_creation():
     username = request.form['username']
@@ -52,20 +76,33 @@ def user_creation():
         dupe.append({"nick":row[0]})
 
     if (len(dupe)==0):
-        fname = request.form['name']
-        lname = request.form['lastname']
+        fname = request.form['fname']
+        lname = request.form['lname']
         email = request.form['email']
-        pword = request.form['pass']
+        pword = request.form['pword']
         # phone = request.form['pnumber']
         state = request.form['state']
         city = request.form['city']
-        zipc = request.form['zip']
+        zipc = int(request.form['zipc'])
         street = request.form['street']
-        db.engine.execute("INSERT INTO artuser (ufirst, ulast, unickname, uemail, upasswrd, ustate, ucity, uzip, ustreet) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", (fname, lname, username, email, pword, state, city, zipc, street))
+        db.engine.execute("INSERT INTO artuser (ufirst, ulast, unickname, uemail, passwrd, ustate, ucity, uzip, ustreet) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', %d, '%s')" % (fname, lname, username, email, pword, state, city, zipc, street))
         return make_response("done", 200)
     else:
         return make_response('username taken', 200)
 
+@app.route('/newItem', methods=['POST'])
+def sale_posting():
+    itemurl = request.form['imageurl']
+    iname = request.form['itemname']
+    itype = request.form['itemtype']
+    price = float(request.form['price'])
+    color = request.form['itemcolor']
+    featFlag = request.form['optradio']
+    description = request.form['desc']
+    print(featFlag + itemurl + iname + itype + color + description)
+    print (price)
+    db.engine.execute("INSERT INTO item (uid, iname, price, itype, icolor, featured, imageurl, idescription) VALUES ('%s', '%s', %f, '%s', '%s', '%s', '%s', '%s')" % (session['userinfo']['uid'], iname, price, itype, color, featFlag, itemurl, description))
+    return redirect(url_for('index'))
 
 # @app.route('/user/<string:uid>/reviews')
 # def get_reviews(uid):
@@ -114,7 +151,7 @@ def get_item(iid):
     itemlist = db.engine.execute("SELECT I.iname, I.price, U.unickname, I.itype, I.imageurl, I.uid, I.idescription FROM item AS I, artuser AS U WHERE iid = %s AND I.uid = U.uid", (iid))
     item = []
     for row in itemlist:
-        item.append({"title":row[0], "artist":row[2], "price":row[1], "type":row[3], "imageurl":row[4], "artistID":row[5], "d escription":row[6]})
+        item.append({"title":row[0], "artist":row[2], "price":row[1], "type":row[3], "imageurl":row[4], "artistID":row[5], "description":row[6]})
     return jsonify({"item":item[0]})
 
 @app.route('/create_listing')

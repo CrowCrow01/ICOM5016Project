@@ -57,8 +57,8 @@
             <li><a href="#"></a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="http://localhost:5000/user"><span class="glyphicon glyphicon-user"></span> Welcome User!</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+            <li><a href="http://localhost:5000/user/{{session.userinfo.uid}}"><span class="glyphicon glyphicon-user"></span> Welcome {{session.userinfo.username}}!</a></li>
+            <li><a href="http://localhost:5000/"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
         </ul>
     </div>
 </nav>
@@ -73,18 +73,18 @@
         </div>
         <div class="col-sm-8">
             <p>  </p><br><p>  </p><br>
-            <form action="#">
+            <form action="http://localhost:5000/newItem" method='POST'>
                 <div class="form-group">
                     <label for="itemImage">Image URL:</label>
-                    <input type="text" class="form-control" ng-model="myImage" id="itemImage" value="{{'{{myImage}}'}}">
+                    <input type="text" class="form-control" ng-model="myImage" id="itemImage" value="{{'{{myImage}}'}}" name="imageurl">
                 </div>
                 <div class="form-group">
                     <label for="itemTitle">Title:</label>
-                    <input type="text" class="form-control" id="itemTitle">
+                    <input type="text" class="form-control" id="itemTitle" name="itemname">
                 </div>
                 <div class="form-group">
                   <label for="itemType">Type:</label>
-                   <select class="form-control" id="itemType">
+                   <select class="form-control" id="itemType" name="itemtype">
                        <option>Painting</option>
                        <option>Sculpture</option>
                        <option>Metalwork</option>
@@ -93,21 +93,21 @@
                 </div>
                 <div class="form-group">
                   <label for="itemPrice">Price:</label>
-                    <input type="text" class="form-control" id="itemPrice">
+                    <input type="text" class="form-control" id="itemPrice" name="price">
                 </div>
                 <div class="form-group">
                     <label for="itemColor">Color:</label>
                     <div ng-app="" ng-init="myCol='White'">
-                        <input style="background-color:{{'{{myCol}}'}}" ng-model="myCol" id="itemColor" value="{{'{{myCol}}'}}">
+                        <input style="background-color:{{'{{myCol}}'}}" ng-model="myCol" id="itemColor" value="{{'{{myCol}}'}}" name='itemcolor'>
                     </div>
                 </div>
                 <div class="form-group">
                     <label>Feature this item?</label>
                     <div class="radio">
-                        <label><input type="radio" name="optradio">Feature this item</label>
+                        <label><input type="radio" name="optradio" value="t">Feature this item</label>
                     </div>
                     <div class="radio">
-                        <label><input type="radio" name="optradio">No, thanks.</label>
+                        <label><input type="radio" name="optradio" value="">No, thanks.</label>
                     </div>
                 </div>
                 <div class="form-group">
@@ -116,7 +116,7 @@
                 </div>
                 <div class="form-group">
                     <label for="itemTitle">Description:</label>
-                    <textarea class="form-control" rows="5" id="itemDescription"></textarea>
+                    <textarea class="form-control" rows="5" id="itemDescription" name="desc"></textarea>
                 </div>
                 <div class="form-group center">
                     <input type="submit" value="Submit Art Piece!">

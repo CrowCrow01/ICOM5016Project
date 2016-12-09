@@ -16,6 +16,7 @@ function loadPage(data) {
 
     document.getElementById("userpic").src = data.userinfo[0].upicture;
     document.getElementById("name").innerHTML = "Name: " + data.userinfo[0].uname + " " + data.userinfo[0].lastname;
+    document.getElementById("username").innerHTML = "Username: " + data.userinfo[0].nick;
     document.getElementById("email").innerHTML = "Email: " + data.userinfo[0].email;
     var i, temp;
      try
@@ -23,7 +24,7 @@ function loadPage(data) {
         for(i =1; i<4; i++){
 
             temp = "itemlink" + ('' + (i));
-            document.getElementById(temp).href = "item/" + data.userinfo[i].iid;
+            document.getElementById(temp).href = "http://localhost:5000/item/" + data.userinfo[i].iid;
 
             temp = "itempic" + ('' + (i));
             document.getElementById(temp).src = data.userinfo[i].imageurl;

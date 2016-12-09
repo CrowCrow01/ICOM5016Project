@@ -16,7 +16,8 @@ function loadPage(data) {
 
     document.getElementById("itemImage").src = data.item.imageurl;
     document.getElementById("itemTitle").innerHTML = data.item.title + ", " + data.item.type;
-    document.getElementById("itemDimensions").innerHTML = "Measures: " + data.dimensions;
+    // document.getElementById("itemDimensions").innerHTML = "Measures: " + data.dimensions;
+    document.getElementById("userlink").href = "http://localhost:5000/user/" + data.item.artistID;
     document.getElementById("itemArtist").innerHTML = "By: " + data.item.artist;
     document.getElementById("itemPrice").innerHTML = "Price: " + data.item.price;
     document.getElementById("itemQty").innerHTML = "Qty in stock:" + data.qty;

@@ -9,7 +9,6 @@ var url =  "http://localhost:5000/searchResults/" + term //"searchresultRequest.
 xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         data = JSON.parse(this.responseText);
-        // alert(data.images[0].url);
         loadPage(data);
     }
 };
@@ -22,40 +21,59 @@ function loadPage(data) {
     
     if(j==0) document.getElementById("prev").disabled = true;
 
-    try
-    {
-    for(i=0;i<10;i++)
-    {
-        temp = "link" + ('' + (i+1));
-        document.getElementById(temp).href = "item/" + data.images[j].itemid;
+    try{
+        for(i=0;i<10;i++){
+            if (data.images[j].url == "http://i.imgur.com/ZuE8EYG.jpg"){
+                var performingErrorOnPurpose = data.images[1].itemid;
+            }
+            temp = "link" + ('' + (i+1));
+            document.getElementById(temp).href = "item/" + data.images[j].itemid;
 
-        temp = "image" + ('' + (i+1));
-        document.getElementById(temp).src = data.images[j].url;
+            temp = "image" + ('' + (i+1));
+            document.getElementById(temp).src = data.images[j].url;
 
-        temp = "title" + ('' + (i+1));
-        document.getElementById(temp).innerHTML = data.images[j].title;
+            temp = "title" + ('' + (i+1));
+            document.getElementById(temp).innerHTML = data.images[j].title;
 
-        temp = "artist" + ('' + (i+1));
-        document.getElementById(temp).innerHTML = "Artist: " + data.images[j].artist;
+            temp = "artist" + ('' + (i+1));
+            document.getElementById(temp).innerHTML = "Artist: " + data.images[j].artist;
 
-        temp = "type" + ('' + (i+1));
-        document.getElementById(temp).innerHTML = "Type: " + data.images[j].type;
+            temp = "type" + ('' + (i+1));
+            document.getElementById(temp).innerHTML = "Type: " + data.images[j].type;
 
-        temp = "date" + ('' + (i+1));
-        document.getElementById(temp).innerHTML = "Creation Date: " + data.images[j].date;
+            temp = "date" + ('' + (i+1));
+            document.getElementById(temp).innerHTML = "Creation Date: " + data.images[j].date;
 
-        temp = "descr" + ('' + (i+1));
-        document.getElementById(temp).innerHTML = "Description: " + data.images[j].descr;
-        
-        j = j+1;
-
-
-    }
+            temp = "descr" + ('' + (i+1));
+            document.getElementById(temp).innerHTML = "Description: " + data.images[j].descr;
+            
+            j = j+1;
+        }
     }catch(err) {
         for(;i<10;i++)
         {
             temp = "image" + ('' + (i+1));
             document.getElementById(temp).src = 'http://i.imgur.com/ZuE8EYG.jpg';
+
+            temp = "link" + ('' + (i+1));
+            document.getElementById(temp).href = "#";
+
+            temp = "title" + ('' + (i+1));
+            document.getElementById(temp).innerHTML = "";
+
+            temp = "artist" + ('' + (i+1));
+            document.getElementById(temp).innerHTML = "";
+
+            temp = "type" + ('' + (i+1));
+            document.getElementById(temp).innerHTML = "";
+
+            temp = "date" + ('' + (i+1));
+            document.getElementById(temp).innerHTML = "";
+
+            temp = "descr" + ('' + (i+1));
+            document.getElementById(temp).innerHTML = "";
+        
+            j = j+1;
         }
         document.getElementById("next").disabled = true;
     }

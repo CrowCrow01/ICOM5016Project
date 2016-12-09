@@ -71,8 +71,8 @@
             <li><a href="#"></a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="http://localhost:5000/user"><span class="glyphicon glyphicon-user"></span> Welcome User!</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+            <li><a href="http://localhost:5000/user/{{session.userinfo.uid}}"><span class="glyphicon glyphicon-user"></span> Welcome {{session.userinfo.username}}!</a></li>
+            <li><a href="http://localhost:5000/"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
         </ul>
     </div>
 </nav>

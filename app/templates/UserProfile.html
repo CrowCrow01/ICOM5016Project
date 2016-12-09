@@ -102,8 +102,8 @@
             <li><a href="#"></a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="http://localhost:5000/user"><span class="glyphicon glyphicon-user"></span> Welcome User!</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+            <li><a href="http://localhost:5000/user/{{session.userinfo.uid}}"><span class="glyphicon glyphicon-user"></span> Welcome {{session.userinfo.username}}!</a></li>
+            <li><a href="http://localhost:5000/"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
         </ul>
     </div>
 </nav>
@@ -115,7 +115,7 @@
     </div>
         <p align = "right" style = "font-size:45px"> User Information:</p>
         <p id="name" align = "right" style = "font-size:25px"> Name: Tony Stark</p>
-        <p align = "right" style = "font-size:25px"> Experience with: colored pencil drawings, acrylic and oil paintings</p>
+        <p align = "right" id="username" style = "font-size:25px"></p>
         <p id="email" align = "right" style = "font-size:25px"> Email: TStark@gmail.com</p>
         <p align = "right" style = "font-size:25px"> Address: New York, United States</p>
         
