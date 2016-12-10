@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Welcome to ArtBay!</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        /* Remove the navbar's default margin-bottom and rounded borders */
+        .navbar {
+            margin-bottom: 0;
+            border-radius: 0;
+        }
+
+        /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+        .row.content {height: 800px}
+        .sidenav {
+            background-color: #f1f1f1;
+            height: 100%;
+        }
+        /* Set black background color, white text and some padding */
+        footer {
+            background-color: #555;
+            color: white;
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="http://localhost:5000/index">ArtBay</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="http://localhost:5000/index">Home</a></li>
+            <li class="active">
+                <form class="navbar-form" role="search" action="/search" method='get'>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+                        <div class="input-group-btn">
+                            <select class="form-control" id="sel1">
+                                <option>Painting</option>
+                                <option>Drawing</option>
+                                <option>Sculpture</option>
+                                <option>Misc</option>
+                            </select>
+                            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </li>
+            <li><a href="http://localhost:5000/create_listing">Sell a masterpiece!</a></li>
+            <li><a href="http://localhost:5000/auction_house">Auction House</a></li>
+            <li><a href="#"></a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="http://localhost:5000/user/{{session.userinfo.uid}}"><span class="glyphicon glyphicon-user"></span> Welcome {{session.userinfo.username}}!</a></li>
+            <li><a href="http://localhost:5000/"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container-fluid">
+    <div class="row content">
+      <div class="col-sm-2 sidenav">
+          <p>  </p><br><p>  </p><br>
+          <h3>Colors</h3>
+          <div class="container" style="height:100px">
+              <div class="row">
+                  <button style="background-color:red;width:50px;height:20px"></button>
+                  <button style="background-color:blue;width:50px;height:20px"></button>
+                  <button style="background-color:yellow;width:50px;height:20px"></button>
+              </div>
+              <div class="row">
+                  <button style="background-color:green;width:50px;height:20px"></button>
+                  <button style="background-color:purple;width:50px;height:20px"></button>
+                  <button style="background-color:orange;width:50px;height:20px"></button>
+              </div>
+              <div class="row">
+                  <button style="background-color:skyblue;width:50px;height:20px"></button>
+                  <button style="background-color:pink;width:50px;height:20px"></button>
+                  <button style="background-color:brown;width:50px;height:20px"></button>
+              </div>
+              <div class="row">
+                  <button style="background-color:white;width:50px;height:20px"></button>
+                  <button style="background-color:gray;width:50px;height:20px"></button>
+                  <button style="background-color:black;width:50px;height:20px"></button>
+              </div>
+              <p>Selected: Any Color</p>
+          </div>
+          <h3>Dimensions</h3>
+          <div style="height:200px;">
+              <form action="#">
+                  <div class="form group">
+                      <label><input type="radio" name="dimsel">Less than:</label>
+                      <label><input type="radio" name="dimsel">Greater than:</label>
+                      <label><input type="radio" name="dimsel">Equal to:</label>
+                      <p> X: <input type="number" id="dimx" style="max-width:80px"> inches</p>
+                      <p> Y: <input type="number" id="dimy" style="max-width:80px"> inches</p>
+                      <p> Z: <input type="number" id="dimz" style="max-width:80px" value="0"> inches</p>
+                      <input type="submit" value="Submit">
+                  </div>
+              </form>
+          </div>
+          <h3>Price</h3>
+          <div style="height:150px;">
+              <form action="#">
+                  <div class="form group">
+                      <label><input type="checkbox" value="">Less than:</label>
+                      <p> $ <input type="number" id="lessp" style="max-width:80px"> USD</p>
+                      <label><input type="checkbox" value="">Greater than:</label>
+                      <p> $ <input type="number" id="greatp" style="max-width:80px"> USD</p>
+                      <input type="submit" value="Submit">
+                  </div>
+              </form>
+          </div>
+
+      </div>
+
+        <div class="col-sm-10">
+            <div class="list-group">
+                <p>  </p><br><p>  </p><br>
+                <div class="row">
+                    <div class="col-sm-3" style="background-color:black;">
+                        <a id="link1" href="#">
+                            <img id="image1"  src="" alt="HTML5 Icon" style="width:250px;height:225px;">
+                        </a>
+                    </div>
+                    <div class="col-sm-9">
+                        <h3 id="title1"></h3>
+                        <h5 id="artist1"></h5>
+                        <h5 id="type1"></h5>
+                        <h5 id="date1"></h5>
+                        <p id="descr1"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3" style="background-color:black;">
+                        <a id="link2" href="#">
+                            <img id="image2" src="" alt="HTML5 Icon" style="width:250px;height:225px;">
+                        </a>
+                    </div>
+                    <div class="col-sm-9">
+                        <h3 id="title2"></h3>
+                        <h5 id="artist2"></h5>
+                        <h5 id="type2"></h5>
+                        <h5 id="date2"></h5>
+                        <p id="descr2"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3" style="background-color:black;">
+                        <a id="link3" href="#">
+                            <img id="image3" src="" alt="HTML5 Icon" style="width:250px;height:225px;">
+                        </a>
+                    </div>
+                    <div class="col-sm-9">
+                        <h3 id="title3"></h3>
+                        <h5 id="artist3"></h5>
+                        <h5 id="type3"></h5>
+                        <h5 id="date3"></h5>
+                        <p id="descr3"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3" style="background-color:black;">
+                        <a id="link4" href="#">
+                            <img id="image4" src="" alt="HTML5 Icon" style="width:250px;height:225px;">
+                        </a>
+                    </div>
+                    <div class="col-sm-9">
+                        <h3 id="title4"></h3>
+                        <h5 id="artist4"></h5>
+                        <h5 id="type4"></h5>
+                        <h5 id="date4"></h5>
+                        <p id="descr4"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3" style="background-color:black;">
+                        <a id="link5" href="#">
+                            <img id="image5"  src="" alt="HTML5 Icon" style="width:250px;height:225px;">
+                        </a>
+                    </div>
+                    <div class="col-sm-9">
+                        <h3 id="title5"></h3>
+                        <h5 id="artist5"></h5>
+                        <h5 id="type5"></h5>
+                        <h5 id="date5"></h5>
+                        <p id="descr5"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3" style="background-color:black;">
+                        <a id="link6" href="#">
+                            <img id="image6"  src="" alt="HTML5 Icon" style="width:250px;height:225px;">
+                        </a>
+                    </div>
+                    <div class="col-sm-9">
+                        <h3 id="title6"></h3>
+                        <h5 id="artist6"></h5>
+                        <h5 id="type6"></h5>
+                        <h5 id="date6"></h5>
+                        <p id="descr6"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3" style="background-color:black;">
+                        <a id="link7" href="#">
+                            <img id="image7"  src="" alt="HTML5 Icon" style="width:250px;height:225px;">
+                        </a>
+                    </div>
+                    <div class="col-sm-9">
+                        <h3 id="title7"></h3>
+                        <h5 id="artist7"></h5>
+                        <h5 id="type7"></h5>
+                        <h5 id="date7"></h5>
+                        <p id="descr7"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3" style="background-color:black;">
+                        <a id="link8" href="#">
+                            <img id="image8"  src="" alt="HTML5 Icon" style="width:250px;height:225px;">
+                        </a>
+                    </div>
+                    <div class="col-sm-9">
+                        <h3 id="title8"></h3>
+                        <h5 id="artist8"></h5>
+                        <h5 id="type8"></h5>
+                        <h5 id="date8"></h5>
+                        <p id="descr8"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3" style="background-color:black;">
+                        <a id="link9" href="#">
+                            <img id="image9"  src="" alt="HTML5 Icon" style="width:250px;height:225px;">
+                        </a>
+                    </div>
+                    <div class="col-sm-9">
+                        <h3 id="title9"></h3>
+                        <h5 id="artist9"></h5>
+                        <h5 id="type9"></h5>
+                        <h5 id="date9"></h5>
+                        <p id="descr9"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3" style="background-color:black;">
+                        <a id="link10" href="#">
+                            <img id="image10"  src="" alt="HTML5 Icon" style="width:250px;height:225px;">
+                        </a>
+                    </div>
+                    <div class="col-sm-9">
+                        <h3 id="title10"></h3>
+                        <h5 id="artist10"></h5>
+                        <h5 id="type10"></h5>
+                        <h5 id="date10"></h5>
+                        <p id="descr10"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <br>
+                    <div class="col-sm-10" style="background-color:lightgray;">
+                        <button id="prev" type="button" onclick="getPreviousPage()" class="btn btn-default">Previous Page</button>
+                    </div>
+                    <div class="col-sm-2" style="background-color:lightgray;">
+                        <button id="next" type="button" onclick="getNextPage()" class="btn btn-default" style=display:inline-block;vertical-align:middle;">Next Page</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="static/js/ArtBay_Search.js"></script>
+
+<footer class="container-fluid text-center">
+    <p>ICOM5007 Project Fall 2016 Carlos Stephen Jose copyright</p>
+</footer>
+
+</body>
+</html>

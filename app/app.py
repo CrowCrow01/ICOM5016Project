@@ -97,11 +97,18 @@ def sale_posting():
     itype = request.form['itemtype']
     price = float(request.form['price'])
     color = request.form['itemcolor']
-    featFlag = request.form['optradio']
+    featFlag = request.form['featuredRadio']
+    auctionFlag = request.form['auctionRadio']
     description = request.form['desc']
-    print(featFlag + itemurl + iname + itype + color + description)
-    print (price)
+    deadline = request.form['deadline']
     db.engine.execute("INSERT INTO item (uid, iname, price, itype, icolor, featured, imageurl, idescription) VALUES ('%s', '%s', %f, '%s', '%s', '%s', '%s', '%s')" % (session['userinfo']['uid'], iname, price, itype, color, featFlag, itemurl, description))
+    if (auctionFlag == 't'):
+        auctionedItemID = []
+        itemquery = db.engine.execute("SELECT I.iid FROM item AS I WHERE I.iname = '%s' AND I.uid = %s" % (iname, session['userinfo']['uid']))
+        for row in itemquery:
+            auctionedItemID.append({"iid":row[0]})
+            print (auctionedItemID)
+        db.engine.execute("INSERT INTO auctions (iid, startingbid, adeadline) VALUES ('%s', %f, '%s')" % (auctionedItemID[0]['iid'], price, deadline))
     return redirect(url_for('index'))
 
 # @app.route('/user/<string:uid>/reviews')
@@ -122,6 +129,14 @@ def get_listings():
 #         images.append({"url":row[0], "artist":row[1], "type":row[2], "descr":row[3], "title":row[4]})
 #     print (images)
 #     return jsonify({"images":images})
+
+@app.route('/auction_house/<string:word>', methods=['GET'])
+def get_auctions(word):
+    images = []
+    results = db.engine.execute("SELECT I.imageurl, U.unickname, I.itype, I.idescription, I.iname, I.iid, A.aid, A.startingbid, FROM artuser AS U, item AS i, auctions AS A WHERE U.uid = I.uid AND I.iid = A.iid and I.iname LIKE '%%" + word + "%%'")
+    for row in results:
+        images.append({"url":row[0], "artist":row[1], "type":row[2], "descr":row[3], "title":row[4], "itemid":row[5], "auctionid":row[6], "initialbid":row[7]})
+    return jsonify({"images":images})
 
 @app.route('/searchResults/<string:word>', methods=['GET'])
 def get_results(word):
