@@ -21,6 +21,7 @@ function loadPage(data) {
     document.getElementById("itemArtist").innerHTML = "By: " + data.item.artist;
     document.getElementById("itemPrice").innerHTML = "Price: " + data.item.price;
     document.getElementById("itemQty").innerHTML = "Qty in stock:" + data.qty;
-    document.getElementById("itemComments").innerHTML = data.comment;
+    // document.getElementById("itemComments").innerHTML = data.comment;
     // document.getElementById("itemDescription").innerHTML = data.item.description;
+    document.getElementById("cartButton").action = "http://localhost:5000/addToCart/"+id;
 }

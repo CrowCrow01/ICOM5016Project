@@ -119,25 +119,6 @@ def sale_posting():
 def get_listings():
     #get latest entries from listings table
     return render_template('ArtBay_Search.html')
-
-# @app.route('/search/<string:term>', methods=['GET'])
-# def searchresult(term):
-        # likeness = '%' + term + "%"
-#     searchlist = db.engine.execute("SELECT I.imageurl, U.unickname, I.itype, I.idescription, I.iname FROM artuser AS U, item AS I WHERE U.uid = I.uid")#, (term))
-#     images = []
-#     for row in results:
-#         images.append({"url":row[0], "artist":row[1], "type":row[2], "descr":row[3], "title":row[4]})
-#     print (images)
-#     return jsonify({"images":images})
-
-@app.route('/auction_house/<string:word>', methods=['GET'])
-def get_auctions(word):
-    images = []
-    results = db.engine.execute("SELECT I.imageurl, U.unickname, I.itype, I.idescription, I.iname, I.iid, A.aid, A.startingbid, FROM artuser AS U, item AS i, auctions AS A WHERE U.uid = I.uid AND I.iid = A.iid and I.iname LIKE '%%" + word + "%%'")
-    for row in results:
-        images.append({"url":row[0], "artist":row[1], "type":row[2], "descr":row[3], "title":row[4], "itemid":row[5], "auctionid":row[6], "initialbid":row[7]})
-    return jsonify({"images":images})
-
 @app.route('/searchResults/<string:word>', methods=['GET'])
 def get_results(word):
                                                                                                                                                 #TODO BREAKING
@@ -151,6 +132,20 @@ def get_results(word):
         images.append({"url":row[0], "artist":row[1], "type":row[2], "descr":row[3], "title":row[4], "itemid":row[5]})
     # print (images)
     return jsonify({"images":images})
+
+@app.route('/auction_house')
+def get_auction_listings():
+    #get latest entries from listings table
+    return render_template('auctionsearchpage.html')
+@app.route('/auctionsearch/<string:word>', methods=['GET'])
+def get_auctions(word):
+    images = []
+    results = db.engine.execute("SELECT I.imageurl, U.unickname, I.itype, I.idescription, I.iname, I.iid, A.aid, A.startingbid FROM artuser AS U, item AS I, auctions AS A WHERE U.uid = I.uid AND I.iid = A.iid and I.iname LIKE '%%" + word + "%%'")
+    for row in results:
+        images.append({"url":row[0], "artist":row[1], "type":row[2], "descr":row[3], "title":row[4], "itemid":row[5], "auctionid":row[6], "initialbid":row[7]})
+    return jsonify({"images":images})
+
+
 @app.route('/searchResults/', methods=['GET'])
 def empty_search():
     images = []
@@ -201,6 +196,47 @@ def getOrders():
 @app.route('/cart')
 def getCart():
     return render_template('cart.html')
+
+@app.route('/myCart')
+def myCart():
+    cartitems = []
+    totalprice = 0
+    for row in db.engine.execute("SELECT DISTINCT I.iname, I.iid, I.imageurl, I.price FROM shoppingcart AS S,item AS I, artuser AS U WHERE %s = S.uid AND I.iid = S.iid", (session['userinfo']['uid'])):
+        cartitems.append({"title":row[0], "iid":row[1], "imageurl":row[2], "price":row[3]})
+        totalprice += row[3]
+    for row in db.engine.execute("SELECT ufirst, ulast, ustreet, ucity, ustate, uzip FROM artuser WHERE uid = %s" % (session['userinfo']['uid'])):
+        fullname = row[0] + " " + row[1]
+        address = row[2] + " " + row[3] + " " + row [4] + " " + str(row[5])
+    return jsonify({"cart":cartitems, "totalprice":totalprice, "fullname":fullname, "address":address})
+
+@app.route('/addToCart/<string:iid>', methods=['POST'])
+def add_to_cart(iid):
+    db.engine.execute("INSERT INTO shoppingcart (uid, iid) VALUES ('%s', '%s')" % (session['userinfo']['uid'], iid))
+    return redirect(url_for('getCart'))
+
+@app.route('/cartdelete/<string:iid>', methods=['POST'])
+def remove_from_cart(iid):
+    db.engine.execute("DELETE FROM shoppingcart WHERE iid = %s AND uid = '%s'" % (iid, session['userinfo']['uid']))
+    return redirect(url_for('getCart'))
+
+@app.route('/placeOrder')
+def buy():
+    itemarray = []
+    for row in db.engine.execute("SELECT DISTINCT I.price, I.iid FROM shoppingcart AS S,item AS I, artuser AS U WHERE %s = S.uid AND I.iid = S.iid", (session['userinfo']['uid'])):
+        itemarray.append({"price":row[0], "iid":row[1]})
+    totalprice = 0
+    for item in itemarray:
+        totalprice += item['price']
+    totalprice += 20 #shipping
+    oidstring = "oid"
+    db.engine.execute("UPDATE creditcard SET \"cbalance\" = cbalance - %f WHERE uid = %s" % (totalprice, session['userinfo']['uid']))
+    db.engine.execute("INSERT INTO orders (usid) VALUES (%s)" % (session['userinfo']['uid']))
+    for row in db.engine.execute("SELECT MAX(%s) FROM orders WHERE usid = %s" % (oidstring, session['userinfo']['uid'])):
+        oid = row[0]
+    for item in itemarray:
+        db.engine.execute("INSERT INTO ordercontents (%s, iid) VALUES (%s, %s)" % (oidstring, oid, item['iid']))
+        db.engine.execute("DELETE FROM shoppingcart WHERE uid = %s AND iid = %s" % (session['userinfo']['uid'], item['iid']))
+    return "done"
 
 @app.route('/newCard')
 def add_credit_card():

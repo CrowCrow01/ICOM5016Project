@@ -79,9 +79,11 @@
             <p id="itemQty" align = "right" style = "font-size:30px"></p>
         <form action="demo_form.asp" style = "float: right">
             Select quantity: <input type="text" name="fname"><br>
-            <a href='http://localhost:5000/cart'><input type="button" value="Add to Cart!" style="float: right;"></a>
             <input type="button" value="Bid!" style="float: right;">
             <input type="button" value="Buy Now!" style="float: right;">
+        </form>
+        <form id='cartButton' action = "#" method = 'POST'>
+            <a href='http://localhost:5000/cart'><input type="submit" value="Add to Cart!" style="float: right;"></a>
         </form>
 </div>
 
