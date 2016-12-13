@@ -14,6 +14,7 @@ var xmlhttp = new XMLHttpRequest();
 
 function loadPage(data) {
 
+    document.getElementById("edithref").href = "http://localhost:5000/user_edit/"+id;
     document.getElementById("userpic").src = data.userinfo[0].upicture;
     document.getElementById("name").innerHTML = "Name: " + data.userinfo[0].uname + " " + data.userinfo[0].lastname;
     document.getElementById("username").innerHTML = "Username: " + data.userinfo[0].nick;

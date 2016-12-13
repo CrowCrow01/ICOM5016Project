@@ -60,11 +60,13 @@ def get_user(uid):
     items = db.engine.execute("SELECT iname, imageurl, iid FROM item WHERE uid = %s", (uid))
     for row in items:
         user.append({"iname":row[0], "imageurl":row[1], "iid":row[2]})
-    print (user)
+    # print (user)
     return jsonify({"userinfo":user})
 
-@app.route('/user_edit')
-def user_edit():
+@app.route('/user_edit/<string:uid>', methods=['GET'])
+def user_edit(uid):
+    if (uid != session['userinfo']['uid'] and session['userinfo']['uid'] != 10):
+        return "You are not this user nor an admin"
     return render_template('EditInfo.html')
 
 @app.route('/create_user', methods = ['POST'])
@@ -107,7 +109,7 @@ def sale_posting():
         itemquery = db.engine.execute("SELECT I.iid FROM item AS I WHERE I.iname = '%s' AND I.uid = %s" % (iname, session['userinfo']['uid']))
         for row in itemquery:
             auctionedItemID.append({"iid":row[0]})
-            print (auctionedItemID)
+            # print (auctionedItemID)
         db.engine.execute("INSERT INTO auctions (iid, startingbid, adeadline) VALUES ('%s', %f, '%s')" % (auctionedItemID[0]['iid'], price, deadline))
     return redirect(url_for('index'))
 
@@ -178,7 +180,7 @@ def saleinfo(itemid):
     orderlist = db.engine.execute("SELECT I.iname, I.price FROM item AS I WHERE iid = %s ", (itemid))
     for row in orderlist:
         order = {"title":row[0], "orderID":10324, "shipdate":"December 25, 2016", "buyer":"StephenVC", "address":"Mayaguez", "itemprice":row[1], "shipprice":25.00, "totalprice":row[1]+25.00}
-    print (order)
+    # print (order)
     return jsonify(order)
 
 @app.route('/open_requests')
@@ -219,7 +221,7 @@ def remove_from_cart(iid):
     db.engine.execute("DELETE FROM shoppingcart WHERE iid = %s AND uid = '%s'" % (iid, session['userinfo']['uid']))
     return redirect(url_for('getCart'))
 
-@app.route('/placeOrder')
+@app.route('/placeOrder', methods=['POST'])
 def buy():
     itemarray = []
     for row in db.engine.execute("SELECT DISTINCT I.price, I.iid FROM shoppingcart AS S,item AS I, artuser AS U WHERE %s = S.uid AND I.iid = S.iid", (session['userinfo']['uid'])):
@@ -236,7 +238,7 @@ def buy():
     for item in itemarray:
         db.engine.execute("INSERT INTO ordercontents (%s, iid) VALUES (%s, %s)" % (oidstring, oid, item['iid']))
         db.engine.execute("DELETE FROM shoppingcart WHERE uid = %s AND iid = %s" % (session['userinfo']['uid'], item['iid']))
-    return "done"
+    return redirect(url_for("confirmation"))
 
 @app.route('/newCard')
 def add_credit_card():
